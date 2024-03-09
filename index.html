@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="firebase.js"></script>
+    <script type="text/javascript">
+        // Import the functions you need from the SDKs you need
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDk-3O8sRl_J-rsBlyT5jb9fHhPOmJclrc",
+            authDomain: "flappybird-71f9d.firebaseapp.com",
+            projectId: "flappybird-71f9d",
+            storageBucket: "flappybird-71f9d.appspot.com",
+            messagingSenderId: "324026918400",
+            appId: "1:324026918400:web:a83a5069aca89af16e1ae5"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        db.settings({})
+    </script>
+
+
+</head>
+<body id="body">
+<div id="app">
+
+    <!--        <img id="pipe" alt="pipe" src="pipe-green.png">-->
+    <button id="start" @click="startGame">Click to start</button>
+   <div class="game" @click="movebird">
+        <img ref="bird" id="bird" alt="bird" src="bluebird-downflap.png" :style="{bottom:birdYPosition + 'px'}">
+     <div class="pipe">
+         <img ref="pipe" alt="pipe" src="pipe-green.png" :style="{left:birdYPosition - 'px'}">
+     </div>
+     <div  class="box" id="end" v-show="show">
+            The HighScore is {{counter}}
+     </div>
+   </div>
+
+</div>
+<script src="vue.global.js"></script>
+<script src="hello.js"></script>
+<script src="https://unpkg.com/vue@3.4.19/dist/vue.global.js"></script>
+</body>
+</html>

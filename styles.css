@@ -1,0 +1,50 @@
+
+#board {
+    background-color: lightblue;
+}
+
+.game {
+    width: 600px;
+    height: 600px;
+    Position: absolute;
+    left: 200px;
+    background-image: url("background-day.png");
+
+}
+
+.pipe {
+    display: flex;
+    justify-content: right;
+    width: 200px;
+    height: 200px;
+}
+
+
+#bird {
+   position: absolute;
+}
+
+.container {
+    width: 30px;
+    height: 30px;
+    top: 30px;
+    bottom: 30px;
+
+}
+
+/*#bird {*/
+/*    width:10px;*/
+/*    height: 10px;*/
+/*    top:30px;*/
+/*    bottom:30px;*/
+/*}*/
+
+
+
+.box {
+    width: 100px;
+    height: 100px;
+    border: 5px solid black;
+    margin: 5px;
+    padding: 10px;
+}
