@@ -3,39 +3,63 @@ const {createApp} = Vue;
 createApp({
     data() {
         return {
-            shift: -10,
+
             boardwidth: 360,
-            boardHeight: 640,
+            boardHeight: 600,
             birdYPosition: 300,
-            counter: 0,
-            HighScore: db.collection('HighScore').doc('joG9au130hR9kE7nBdJp'),
+            PipeXPosition: 360,
+            pipeYPosition: 600,
+            gapsize: 150,
+            score: 0,
             bird: document.getElementById("bird"),
             pipe: document.getElementById("pipe"),
             end: document.getElementById("end"),
-            showEndBox: false,
-            active: true
+            active: true,
+            show: false,
+            gravityInterval: null,
+            movepipeInterval: null,
+            scoreForm: document.getElementById("scoreForm")
         }
     }, methods: {
 
         endgame: function() {
-           this.showEndBox = false;
+           if (this.birdYPosition < 0 || this.birdYPosition > 360) {
+               this.show = true;
+               console.log("Game is over")
+               this.gameover();
+               return null;
+
+           } else if (this.PipeXPosition <= 0) {
+               this.score += 1
+
+           }
+        },
+
+        gameover: function() {
+            window.clearInterval(this.gravityInterval);
+            window.clearInterval(this.movepipeInterval);
         },
 
         startGame: function() {
-                window.setInterval(this.gravity, 300);
-                this.endgame();
-
+                this.gravityInterval = window.setInterval(this.gravity, 200);
+                window.setInterval(this.endgame, 100);
+                this.movepipeInterval = window.setInterval(this.movePipe, 20);
         },
 
-        duringGame: function() {
-            window.setInterval(this.pipe, 1500)
+        storescore: function() {
+            this.scoreForm.addEventListener("submit", e => {
+                e.preventDefault();
+
+                let name = this.scoreForm.name.value = '';
+
+                console.log("adding")
+                db.collection('HighScore').add({
+                    'name': name,
+                    'HighScore': this.score
+                })
+            })
         },
 
-        render: function() {
-            this.duringGame()
-            this.placepipe()
-            this.movebird()
-        },
 
         movebird: function() {
 
@@ -57,8 +81,17 @@ createApp({
             this.bird.style.bottom = `${this.birdYPosition}`
         },
 
-        placepipe: function() {
+        topPipeHeight: function() {
+            return
+        },
 
+        movePipe: function() {
+
+                this.PipeXPosition -= 1.5
+
+                if (this.PipeXPosition === 0) {
+                    this.PipeXPosition = 600
+                }
         }
 
     }

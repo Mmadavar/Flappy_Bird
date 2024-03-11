@@ -13,11 +13,27 @@
 }
 
 .pipe {
-    display: flex;
-    justify-content: right;
-    width: 200px;
-    height: 200px;
+    position: relative;
+    width: 53px;
+    height: 100%;
+
 }
+
+.top_pipe, .bottom_pipe {
+    background-image: url("pipe-green.png");
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+}
+
+.top_pipe {
+    bottom: 100%;
+}
+
+.bottom_pipe {
+    top: 100%;
+}
+
 
 
 #bird {

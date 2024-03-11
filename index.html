@@ -34,11 +34,20 @@
 
     <!--        <img id="pipe" alt="pipe" src="pipe-green.png">-->
     <button id="start" @click="startGame">Click to start</button>
+    <button @click="startGame">Click to restart</button>
    <div class="game" @click="movebird">
         <img ref="bird" id="bird" alt="bird" src="bluebird-downflap.png" :style="{bottom:birdYPosition + 'px'}">
      <div class="pipe">
-         <img ref="pipe" alt="pipe" src="pipe-green.png" :style="{left:birdYPosition - 'px'}">
+         <div class="top_pipe" :style="{height:PipeXPosition + 'px'}"></div>
+         <div class="bottom_pipe"></div>
      </div>
+       <div v-show="show">
+           <form id="scoreForm">
+               <label for="name">Name:</label>
+               <input type="text" id="name" name="name"><br><br>
+               <button id="submitscore" @click="storescore">Click to Submit</button>
+           </form>
+       </div>
      <div  class="box" id="end" v-show="show">
             The HighScore is {{counter}}
      </div>
